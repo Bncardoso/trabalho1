@@ -1,0 +1,62 @@
+#include<stdio.h>
+#include<string.h>
+
+int Soma(int N1, int N2, int D1, int D2){
+    int Num,Den;
+    Num=N1*D2+N2*D1;
+    Den=D1*D2;
+}
+int Subtrai(int N1, int N2, int D1, int D2){
+    int Num,Den;
+    Num=N1*D2-N2*D1;
+    Den=D1*D2;
+}
+int Multiplicacao(int N1, int N2, int D1, int D2){
+    int Num,Den;
+    Num=N1*N2;
+    Den=D1*D2;
+}
+int Divisao(int N1, int N2, int D1, int D2){
+    int Num,Den;
+    Num=N1*D2;
+    Den=N2*D1;
+}
+
+int main(){
+    int Teste, X1, X2, Y1, Y2,i;
+    char Op;
+    scanf("%d",&Teste); //1º
+	if(Teste >= 1 && Teste <= 10000){
+	    while(i<Teste){
+	    	printf("Numerador:");
+		    scanf("%d%d", &X1, &X2);//2º
+		    printf("Op:");
+		    scanf("%s", &Op);//3º
+		    printf("Denominador:");
+		    scanf("%d%d", &Y1, &Y2);
+	        if(X1>= 1 && X1 <= 1000 &&
+	        	X2>= 1 && X2 <= 1000 &&
+	        	Y1>= 1 && Y1 <= 1000 &&
+	        	Y2>= 1 && Y2 <= 1000)
+				{
+	    			switch(Op){
+	    				case '-':
+	    					printf("Oi");
+	    					break;
+	    				case '+':
+	    					printf("OI");
+	    					break;
+	    				case '*':
+	    					printf("OI");
+	    					break;
+	    				case '/':
+	    					printf("OI");
+	    					break;
+					}
+				}
+		i++;
+    }
+    
+	}
+
+}
