@@ -1,0 +1,58 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int MDC(int x, int y) {
+    if (x < y) {
+        int troca = y;
+        y = x;
+        x = troca;
+    }
+    if (x % y == 0)
+        return y; 
+    return MDC(y, x % y);
+}
+int main(){
+    int Teste, X1, X2, Y1, Y2,i,Num, Den, Mdc;
+    char Op,Op2,Op3;
+    scanf("%d",&Teste);
+	if(Teste >= 1 && Teste <= 10000){
+	    while(i<Teste){
+		    scanf("%d%s%d%s%d%s%d", &X1,&Op2,&Y1,&Op,&X2,&Op3,&Y2);
+	        	if(X1>= 1 && X1 <= 1000 &&
+	        	X2>= 1 && X2 <= 1000 &&
+	        	Y1>= 1 && Y1 <= 1000 &&
+	        	Y2>= 1 && Y2 <= 1000)	
+				{
+	    			switch(Op){
+	    				case '-':
+	    					Num=X1*Y2-X2*Y1;
+   							Den=Y1*Y2;
+   							Mdc=MDC((Num<0?-Num:Num),Den);
+	    					printf("%d / %d = %d / %d\n", Num,Den, Num/Mdc, Den/Mdc);
+	    					break;
+	    				case '+':
+	    					Num=X1*Y2+X2*Y1;
+							Den=Y1*Y2;
+							Mdc=MDC((Num<0?-Num:Num),Den);
+	    					printf("%d/%d = %d / %d\n", Num,Den, Num/Mdc, Den/Mdc);
+	    					break;
+	    				case '*':
+	    					Num=X1*X2;
+    						Den=Y1*Y2;
+    						Mdc=MDC((Num<0?-Num:Num),Den);
+	    					printf("%d / %d = %d / %d\n", Num,Den, Num/Mdc, Den/Mdc);
+	    					break;
+	    				case '/':
+	    					Num=X1*Y2;
+    						Den=X2*Y1;
+    						Mdc=MDC((Num<0?-Num:Num),Den);
+	    					printf("%d / %d = %d / %d\n", Num,Den, Num/Mdc, Den/Mdc);
+	    					break;
+					}
+				}
+		i++; 
+    	}
+    
+	}
+	return 0;
+}
