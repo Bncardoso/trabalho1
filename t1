@@ -1,39 +1,56 @@
 #include<stdio.h>
+#include<stdlib.h>
 #include<string.h>
-
-int Soma(int N1, int N2, int D1, int D2){
-    int Num,Den;
+#define TAM 5
+int* Soma(int N1, int N2, int D1, int D2){
+    int Num, Den, Vet[2];
     Num=N1*D2+N2*D1;
-    Den=D1*D2;
+	Den=D1*D2; 
+	Vet[0]=Num;
+	Vet[1]=Den;
+	return Vet;
 }
-int Subtrai(int N1, int N2, int D1, int D2){
-    int Num,Den;
+int* Subtrai(int N1, int N2, int D1, int D2){
+    int Num,Den, Vet[2];
     Num=N1*D2-N2*D1;
     Den=D1*D2;
+    Vet[0]=Num;
+	Vet[1]=Den;
+	return Vet;
 }
-int Multiplicacao(int N1, int N2, int D1, int D2){
-    int Num,Den;
+int* Multiplicacao(int N1, int N2, int D1, int D2){
+    int Num,Den, Vet[2];
     Num=N1*N2;
     Den=D1*D2;
+    Vet[0]=Num;
+	Vet[1]=Den;
+	return Vet;
 }
-int Divisao(int N1, int N2, int D1, int D2){
-    int Num,Den;
+int* Divisao(int N1, int N2, int D1, int D2){
+    int Num,Den, Vet[2];
     Num=N1*D2;
     Den=N2*D1;
+    Vet[0]=Num;
+	Vet[1]=Den;
+	return Vet;
 }
-
+int MDC(int x, int y) {
+    if (x < y) {
+        int troca = y;
+        y = x;
+        x = troca;
+    }
+    if (x % y == 0)
+        return y;
+    return MDC(y, x % y);
+}
 int main(){
-    int Teste, X1, X2, Y1, Y2,i;
-    char Op;
-    scanf("%d",&Teste); //1º
+    int Teste, X1, X2, Y1, Y2,i,*Vet,Aux1, Aux2;
+    char Op,Op2,Op3;
+    scanf("%d",&Teste); 
 	if(Teste >= 1 && Teste <= 10000){
 	    while(i<Teste){
-	    	printf("Numerador:");
-		    scanf("%d%d", &X1, &X2);//2º
-		    printf("Op:");
-		    scanf("%s", &Op);//3º
-		    printf("Denominador:");
-		    scanf("%d%d", &Y1, &Y2);
+		    scanf("%d%s%d%s%d%s%d", &X1,&Op2,&Y1,&Op,&X2,&Op3,&Y2);//2º
 	        if(X1>= 1 && X1 <= 1000 &&
 	        	X2>= 1 && X2 <= 1000 &&
 	        	Y1>= 1 && Y1 <= 1000 &&
@@ -41,20 +58,32 @@ int main(){
 				{
 	    			switch(Op){
 	    				case '-':
-	    					printf("Oi");
+	    					Vet = Subtrai(X1,X2,Y1,Y2);
+	    					Aux1 = Vet[0];
+	    					Aux2 = Vet[1];
+	    					printf("%d / %d = %d / %d\n", Aux1,Aux2, Aux1/(MDC((Aux1<0?-Aux1:Aux1),Aux2)), Aux2/(MDC((Aux1<0?-Aux1:Aux1),Aux2)));
 	    					break;
 	    				case '+':
-	    					printf("OI");
+	    					Vet = Soma(X1,X2,Y1,Y2);
+	    					Aux1 = Vet[0];
+	    					Aux2 = Vet[1];
+	    					printf("%d / %d = %d / %d\n", Aux1,Aux2, Aux1/(MDC((Aux1<0?-Aux1:Aux1),Aux2)), Aux2/(MDC((Aux1<0?-Aux1:Aux1),Aux2)));
 	    					break;
 	    				case '*':
-	    					printf("OI");
+	    					Vet = Multiplicacao(X1,X2,Y1,Y2);
+	    					Aux1 = Vet[0];
+	    					Aux2 = Vet[1];
+	    					printf("%d / %d = %d / %d\n", Aux1,Aux2, Aux1/(MDC((Aux1<0?-Aux1:Aux1),Aux2)), Aux2/(MDC((Aux1<0?-Aux1:Aux1),Aux2)));
 	    					break;
 	    				case '/':
-	    					printf("OI");
+	    					Vet = Divisao(X1,X2,Y1,Y2);
+	    					Aux1 = Vet[0];
+	    					Aux2 = Vet[1];
+	    					printf("%d / %d = %d / %d\n", Aux1,Aux2, Aux1/(MDC((Aux1<0?-Aux1:Aux1),Aux2)), Aux2/(MDC((Aux1<0?-Aux1:Aux1),Aux2)));
 	    					break;
 					}
 				}
-		i++;
+		i++; 
     }
     
 	}
